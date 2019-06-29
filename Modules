@@ -1,0 +1,274 @@
+'Codigo_Reportes
+
+'Visualiza el gráfico seleccionado.
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+Sub Indicador_1()
+    ActiveWindow.ScrollColumn = 3
+End Sub
+Sub Indicador_2()
+    ActiveWindow.ScrollColumn = 19
+End Sub
+Sub Indicador_3()
+    ActiveWindow.ScrollColumn = 35
+End Sub
+Sub Indicador_4()
+    ActiveWindow.ScrollColumn = 51
+End Sub
+Sub Indicador_5()
+    ActiveWindow.ScrollColumn = 67
+End Sub
+Sub Visualizar_Gráficos()
+'Oculta la cinta de opciones, la barra de formulas, pestallas de hojas de calculo,
+'Y la barra de estado.
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Application.DisplayFormulaBar = False
+Application.ExecuteExcel4Macro "SHOW.TOOLBAR(""Ribbon"",False)"
+Application.DisplayStatusBar = False
+ActiveWindow.DisplayWorkbookTabs = False
+ActiveWindow.DisplayHeadings = False
+End Sub
+Sub Enseñar_Todo()
+'Enseña la cinta de opciones, la barra de formulas, pestallas de hojas de calculo,
+'Y la barra de estado.
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Application.ExecuteExcel4Macro "SHOW.TOOLBAR(""Ribbon"",True)"
+Application.DisplayFormulaBar = True
+Application.DisplayStatusBar = True
+ActiveWindow.DisplayWorkbookTabs = True
+ActiveWindow.ScrollColumn = 3
+ActiveWindow.DisplayHeadings = True
+End Sub
+
+
+'refresh
+
+Public Sub actualizar()
+Dim estado, Mystring, info() As String, columna, f, Y, k, u, e As Integer
+'////////////////////////////////////////////////////////////////////////////////////////////////
+'Validating that there are assigned selection criteria.
+    If F_seguimiento_Diseño.L_tipo = Empty Or F_seguimiento_Diseño.L_clave = Empty Then
+        MsgBox "Favor seleccionar el criterio a buscar.", vbExclamation
+        F_seguimiento_Diseño.L_tipo.SetFocus
+        Exit Sub
+    ElseIf F_seguimiento_Diseño.O_aprobado = False And F_seguimiento_Diseño.O_en_proceso = False Then
+        MsgBox "Favor seleccionar el estado de la referencia.", vbExclamation
+        Exit Sub
+    End If
+'////////////////////////////////////////////////////////////////////////////////////////////////
+'Locate the position of the column of the selected criterion and evaluate the option selected in the "ESTADO".
+    Sheets("BD").Select
+    f = 1
+    Do Until Worksheets("BD").Cells(1, f) = Empty
+        If IsNumeric(F_seguimiento_Diseño.L_tipo.Value) = True Then
+        Dim vara As Double
+        vara = CDbl(F_seguimiento_Diseño.L_tipo.Value)
+            If vara = Cells(1, f).Value Then
+                columna = f
+                Exit Do
+            End If
+            f = f + 1
+        Else
+            If F_seguimiento_Diseño.L_tipo.Value = Cells(1, f).Value Then
+                columna = f
+                Exit Do
+            End If
+            f = f + 1
+        End If
+    Loop
+If F_seguimiento_Diseño.O_aprobado.Value = True Then
+    estado = "Aprobada"
+    f = 1
+    j = 0
+    Do Until Cells(f, columna) = Empty
+        If IsNumeric(F_seguimiento_Diseño.L_clave.Value) = True Then
+        Dim vara_1 As Double
+        vara_1 = CDbl(F_seguimiento_Diseño.L_clave.Value)
+            If Cells(f, columna).Value = vara_1 Then
+                If Cells(f, 17).Value = estado Then
+                    j = j + 1
+                End If
+            End If
+            f = f + 1
+        Else
+            If Cells(f, columna) = F_seguimiento_Diseño.L_clave.Value Then
+                If Cells(f, 17).Value = estado Then
+                    j = j + 1
+                End If
+            End If
+            f = f + 1
+        End If
+    Loop
+        If j = 0 Then
+            MsgBox "No hay referencias Aprobadas para el criterio seleccionado.", vbCritical
+            F_seguimiento_Diseño.L_seguimiento.clear
+            Exit Sub
+        End If
+ElseIf F_seguimiento_Diseño.O_en_proceso.Value = True Then
+    estado = "Activa"
+    f = 1
+    j = 0
+    Do Until Cells(f, columna) = Empty
+        If IsNumeric(F_seguimiento_Diseño.L_clave.Value) = True Then
+        vara_1 = CDbl(F_seguimiento_Diseño.L_clave.Value)
+            If Cells(f, columna) = vara_1 Then
+                If Cells(f, 17).Value = estado Then
+                    j = j + 1
+                End If
+            End If
+            f = f + 1
+        Else
+            If Cells(f, columna) = F_seguimiento_Diseño.L_clave.Value Then
+                If Cells(f, 17).Value = estado Then
+                    j = j + 1
+                End If
+            End If
+            f = f + 1
+        End If
+    Loop
+        If j = 0 Then
+            MsgBox "No hay referencias Activas para el criterio seleccionado.", vbCritical
+            F_seguimiento_Diseño.L_seguimiento.clear
+            Exit Sub
+        End If
+End If
+'////////////////////////////////////////////////////////////////////////////////////////////////
+With F_seguimiento_Diseño.L_seguimiento
+    .ColumnCount = 22
+    .ColumnHeads = False
+    .ForeColor = vbBlack
+    .Height = 195
+    .MultiSelect = fmMultiSelectSingle
+    .ListStyle = fmListStyleOption
+    .ColumnWidths = "85;85;50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+    .TextAlign = fmTextAlignCenter
+End With
+'////////////////////////////////////////////////////////////////////////////////////////////////
+'Determine the "L_seguimiento" dimension and load the captured information.
+Workbooks("Proyecto_Chevignon.").Activate
+Worksheets("BD").Visible = xlSheetVisible
+Sheets("BD").Select
+f = 2
+i = 0
+Y = 2
+Do Until Cells(Y, columna) = Empty
+    If IsNumeric(F_seguimiento_Diseño.L_clave.Value) = True Then
+        vara = CDbl(F_seguimiento_Diseño.L_clave.Value)
+        If vara = Cells(Y, columna).Value And estado = Cells(Y, 17) Then
+            k = k + 1
+        End If
+        Y = Y + 1
+    Else
+        If F_seguimiento_Diseño.L_clave.Value = Cells(Y, columna).Value And estado = Cells(Y, 17) Then
+            k = k + 1
+        End If
+        Y = Y + 1
+    End If
+Loop
+k = k
+ReDim info(k, 22)
+i = 0
+Do Until Cells(f, columna) = Empty
+    If IsNumeric(F_seguimiento_Diseño.L_clave.Value) = True Then
+        vara = CDbl(F_seguimiento_Diseño.L_clave.Value)
+            If vara = Cells(f, columna).Value And estado = Cells(f, 17) Then
+                u = 1
+                e = 0
+                    Do Until Cells(f, u) = Empty
+                        Mystring = Cells(f, u).Value
+                        info(i + 1, e) = Mystring
+                        u = u + 1
+                        e = e + 1
+                    Loop
+                    i = i + 1
+                End If
+        f = f + 1
+    Else
+        If F_seguimiento_Diseño.L_clave.Value = Cells(f, columna).Value And estado = Cells(f, 17) Then
+                u = 1
+                e = 0
+                    Do Until Cells(f, u) = Empty
+                        Mystring = Cells(f, u).Value
+                        info(i + 1, e) = Mystring
+                        u = u + 1
+                        e = e + 1
+                    Loop
+                    i = i + 1
+                End If
+        f = f + 1
+    End If
+Loop
+info(0, 0) = "Usuario"
+info(0, 1) = "Fecha Registro"
+info(0, 2) = "Paquete"
+info(0, 3) = "Fecha Paquete"
+info(0, 4) = "Referencia"
+info(0, 5) = "Línea"
+info(0, 6) = "Prenda"
+info(0, 7) = "Colección"
+info(0, 8) = "Año"
+info(0, 9) = "Descripción"
+info(0, 10) = "Tema"
+info(0, 11) = "Tipo Manga"
+info(0, 12) = "Gráfico"
+info(0, 13) = "Caracteristica"
+info(0, 14) = "Proveedor"
+info(0, 15) = "Origen"
+info(0, 16) = "Estado"
+info(0, 17) = "Tela"
+info(0, 18) = "Color"
+info(0, 19) = "Consumo"
+info(0, 20) = "Unidades"
+info(0, 21) = "Metros"
+F_seguimiento_Diseño.L_seguimiento.List = info()
+
+End Sub
+
+
+'Registro_final
+
+Option Explicit
+Dim B_d As Worksheet, D_o As Worksheet
+Public Sub Registra_total()
+ThisWorkbook.Worksheets("BD").Activate
+    With Worksheets("BD")
+        Set B_d = ThisWorkbook.Worksheets("BD")
+    End With
+    With Worksheets("Datos_origen")
+        Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+    End With
+Dim Finale() As Variant
+Dim X, Y As Integer
+    X = F_R_Tela_Principal_Diseño.ListB_tela.ListCount
+    Y = F_R_Tela_Principal_Diseño.ListB_tela.ColumnCount
+        ReDim Finale(X - 1, Y - 1)
+    Dim i, j As Integer  'Filling the array Finale with ListB_tela values
+        For i = 0 To (X - 1) Step 1
+            For j = 0 To (Y - 1) Step 1
+                Finale(i, j) = F_R_Tela_Principal_Diseño.ListB_tela.List(i, j)
+            Next j
+        Next i
+Dim col, k As Integer  'Taking Finale to BD
+    For k = 1 To (X - 1) Step 1
+        Dim Ultima_fila_BD As Range
+        Dim nueva_fila As Integer
+            Set Ultima_fila_BD = B_d.Cells(1, 1).CurrentRegion 'BD location for new data
+            nueva_fila = Ultima_fila_BD.Rows.Count + 1
+            Cells(nueva_fila, 1).Value = Application.Username
+            Cells(nueva_fila, 2).Value = Date
+        For col = 3 To 22 Step 1
+            Cells(nueva_fila, col).Value = Finale(k, col - 3)
+        Next col
+    Next k
+End Sub
+
+
+'Variable_filas
+
+Option Explicit
+
+Public rowes As Integer
+
+Public Sub reinicia_filas()
+rowes = 0
+End Sub
+
