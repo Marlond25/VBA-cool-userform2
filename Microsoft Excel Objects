@@ -1,0 +1,57 @@
+'Sheet2(BD)
+
+Private Sub CommandButton1_Click()
+  F_R_Referencia_Diseño.Show
+End Sub
+
+Private Sub CommandButton2_Click()
+  F_seguimiento_Diseño.Show
+End Sub
+
+Private Sub CommandButton3_Click()
+  UserForm1.Show
+End Sub
+
+'Sheet5(Informes_Graficos)
+
+Private Sub Chart_1_Click()
+  Application.ScreenUpdating = False
+  Call Indicador_1
+End Sub
+Private Sub Chart_2_Click()
+  Application.ScreenUpdating = False
+  Call Indicador_2
+End Sub
+Private Sub Chart_3_Click()
+  Application.ScreenUpdating = False
+  Call Indicador_3
+End Sub
+Private Sub Chart_4_Click()
+  Application.ScreenUpdating = False
+  Call Indicador_4
+End Sub
+Private Sub Chart_5_Click()
+  Application.ScreenUpdating = False
+  Call Indicador_5
+End Sub
+Private Sub Mostrar_Click()
+  Application.ScreenUpdating = False
+  Call Enseñar_Todo
+End Sub
+Private Sub Worksheet_Activate()
+  Application.ScreenUpdating = False
+  Call Visualizar_Gráficos
+End Sub
+
+'Thisworkbook
+
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+  ActiveWorkbook.Save
+End Sub
+
+Private Sub Workbook_Open()
+    Application.Visible = False
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Welcome.Show
+End Sub
