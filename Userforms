@@ -1,0 +1,1525 @@
+'F_Color
+Option Explicit
+Dim ListB_fila_variable() As Variant
+Private Sub CommandButton1_Click()
+F_Color.T_ncolor.Value = ""
+F_Color.T_ccolor.Value = ""
+F_Color.T_Ucolor.Value = ""
+F_Color.T_met.Value = ""
+Unload F_Color
+'F_Color.Hide
+End Sub
+
+Private Sub CommandButton2_Click()
+If rowes = 1 Then
+    If F_Color.T_ncolor.Value <> "" Then
+        'Populating the listbox ListB_tela
+        With F_R_Tela_Principal_Diseño.ListB_tela
+            .ColumnCount = 20
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+            .TextAlign = fmTextAlignCenter
+        End With
+        Dim fln As Integer
+        fln = 0
+        ReDim ListB_fila_variable(rowes, 19)
+            For fln = 0 To 19
+                Dim pasas As String
+                pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                    If pasas <> "" Then
+                        ListB_fila_variable(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                    End If
+            Next fln
+                        ListB_fila_variable(0, 0) = "Paquete"
+                        ListB_fila_variable(0, 1) = "Fecha Paquete"
+                        ListB_fila_variable(0, 2) = "Referencia"
+                        ListB_fila_variable(0, 3) = "Linea"
+                        ListB_fila_variable(0, 4) = "Tipo de prenda"
+                        ListB_fila_variable(0, 5) = "Colección"
+                        ListB_fila_variable(0, 6) = "Año"
+                        ListB_fila_variable(0, 7) = "Descripción"
+                        ListB_fila_variable(0, 8) = "Tema"
+                        ListB_fila_variable(0, 9) = "Tipo de Manga"
+                        ListB_fila_variable(0, 10) = "Gráfico"
+                        ListB_fila_variable(0, 11) = "Caracteristica"
+                        ListB_fila_variable(0, 12) = "Proveedor"
+                        ListB_fila_variable(0, 13) = "Origen"
+                        ListB_fila_variable(0, 14) = "Estado"
+                        ListB_fila_variable(0, 15) = "Tela"
+                        ListB_fila_variable(0, 16) = "Color"
+                        ListB_fila_variable(0, 17) = "Consumo"
+                        ListB_fila_variable(0, 18) = "Unidades"
+                        ListB_fila_variable(0, 19) = "Metros"
+                        ListB_fila_variable(1, 16) = F_Color.T_ncolor.Value
+                        ListB_fila_variable(1, 17) = F_Color.T_ccolor.Value
+                        ListB_fila_variable(1, 18) = F_Color.T_Ucolor.Value
+                        ListB_fila_variable(1, 19) = F_Color.T_met.Value
+            F_R_Tela_Principal_Diseño.ListB_tela.List = ListB_fila_variable()
+    Else
+        MsgBox "Necesita llenar al menos el campo nombre del color", vbExclamation
+    End If
+End If
+If rowes > 1 Then
+    If F_Color.T_ncolor.Value <> "" Then
+ 'Populating the listbox ListB_tela
+        With F_R_Tela_Principal_Diseño.ListB_tela
+            .ColumnCount = 20
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+            .TextAlign = fmTextAlignCenter
+        End With
+    ReDim ListB_fila_variable(rowes, 19) '2
+    Dim i, j As Integer
+    i = 0
+    For i = 0 To rowes - 1 Step 1
+        j = 0
+        For j = 0 To 19 Step 1
+            ListB_fila_variable(i, j) = F_R_Tela_Principal_Diseño.ListB_tela.List(i, j)
+        Next j
+    Next i
+    j = 0
+    For j = 0 To 15 Step 1
+        ListB_fila_variable(rowes, j) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, j)
+    Next j
+        ListB_fila_variable(0, 0) = "Paquete"
+        ListB_fila_variable(0, 1) = "Fecha Paquete"
+        ListB_fila_variable(0, 2) = "Referencia"
+        ListB_fila_variable(0, 3) = "Linea"
+        ListB_fila_variable(0, 4) = "Tipo de prenda"
+        ListB_fila_variable(0, 5) = "Colección"
+        ListB_fila_variable(0, 6) = "Año"
+        ListB_fila_variable(0, 7) = "Descripción"
+        ListB_fila_variable(0, 8) = "Tema"
+        ListB_fila_variable(0, 9) = "Tipo de Manga"
+        ListB_fila_variable(0, 10) = "Gráfico"
+        ListB_fila_variable(0, 11) = "Caracteristica"
+        ListB_fila_variable(0, 12) = "Proveedor"
+        ListB_fila_variable(0, 13) = "Origen"
+        ListB_fila_variable(0, 14) = "Estado"
+        ListB_fila_variable(0, 15) = "Tela"
+        ListB_fila_variable(0, 16) = "Color"
+        ListB_fila_variable(0, 17) = "Consumo"
+        ListB_fila_variable(0, 18) = "Unidades"
+        ListB_fila_variable(0, 19) = "Metros"
+    ListB_fila_variable(rowes, 16) = F_Color.T_ncolor.Value
+    ListB_fila_variable(rowes, 17) = F_Color.T_ccolor.Value
+    ListB_fila_variable(rowes, 18) = F_Color.T_Ucolor.Value
+    ListB_fila_variable(rowes, 19) = F_Color.T_met.Value
+    F_R_Tela_Principal_Diseño.ListB_tela.List = ListB_fila_variable()
+    Else
+        MsgBox "Necesita llenar al menos el campo nombre del color", vbExclamation
+    End If
+End If
+F_Color.T_ccolor.Value = ""
+F_Color.T_met.Value = ""
+F_Color.T_ncolor.Value = ""
+F_Color.T_Ucolor.Value = ""
+F_Color.Hide
+End Sub
+
+Private Sub T_ccolor_Change()
+F_Color.T_ccolor.Value = Replace(F_Color.T_ccolor.Value, ".", ",")
+End Sub
+
+Private Sub T_ccolor_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If IsNumeric(F_Color.T_ccolor.Value) = True And IsNumeric(F_Color.T_Ucolor.Value) = True And F_Color.T_ccolor.Value <> "" Then
+    Dim unid, cons As Double
+    unid = CDbl(F_Color.T_Ucolor.Value)
+    cons = CDbl(F_Color.T_ccolor.Value)
+    F_Color.T_met.Value = unid * cons
+ElseIf IsNumeric(F_Color.T_ccolor.Value) = False And F_Color.T_ccolor.Value <> "" Then
+    MsgBox "El consumo debe ser un valor numerico", vbExclamation
+    'F_Color.T_ccolor.Value = ""
+    F_Color.T_ccolor.SetFocus
+Else
+F_Color.T_met.Value = ""
+End If
+End Sub
+
+Private Sub T_Ucolor_Change()
+F_Color.T_Ucolor.Value = Replace(F_Color.T_Ucolor.Value, ".", ",")
+End Sub
+
+Private Sub T_Ucolor_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If IsNumeric(F_Color.T_ccolor.Value) = True And IsNumeric(F_Color.T_Ucolor.Value) = True And F_Color.T_Ucolor.Value <> "" Then
+    Dim unid, cons As Double
+    unid = CDbl(F_Color.T_Ucolor.Value)
+    cons = CDbl(F_Color.T_ccolor.Value)
+    F_Color.T_met.Value = unid * cons
+ElseIf IsNumeric(F_Color.T_Ucolor.Value) = False And F_Color.T_Ucolor.Value <> "" Then
+    MsgBox "Las unidades deben tener un valor numerico", vbExclamation
+    'F_Color.T_Ucolor.Value = ""
+    F_Color.T_Ucolor.SetFocus
+Else
+F_Color.T_met.Value = ""
+End If
+End Sub
+
+Private Sub UserForm_Activate()
+rowes = rowes + 1
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Unload F_Color
+End Sub
+
+
+'F_Modificar_Diseño
+
+Private Sub B_limpiar_Click()
+F_modificar_Diseño.L_grafico.Value = Empty
+F_modificar_Diseño.L_paquete.Value = Empty
+F_modificar_Diseño.L_proveedor.Value = Empty
+F_modificar_Diseño.L_tipo_manga.Value = Empty
+F_modificar_Diseño.T_caracteristicas.Value = Empty
+F_modificar_Diseño.T_color.Value = Empty
+F_modificar_Diseño.T_consumo.Value = Empty
+F_modificar_Diseño.T_tela.Value = Empty
+F_modificar_Diseño.L_tema.Value = Empty
+F_modificar_Diseño.T_unidades.Value = Empty
+F_modificar_Diseño.T_metros.Value = Empty
+End Sub
+
+Private Sub B_modificar_Click()
+Dim cuenta, datos(22) As String, fila, f As Integer
+cuenta = F_seguimiento_Diseño.L_seguimiento.ListCount
+For fila = cuenta To 0 Step -1
+    If F_seguimiento_Diseño.L_seguimiento.Selected(fila) Then
+        For e = 0 To 22
+        datos(e) = F_seguimiento_Diseño.L_seguimiento.List(fila, e)
+        Next e
+    End If
+Next fila
+Worksheets("BD").Visible = xlSheetVisible
+Sheets("BD").Select
+f = 2
+Do Until Worksheets("BD").Cells(f, 5) = Empty
+    If Worksheets("BD").Cells(f, 5).Value = datos(4) And Worksheets("BD").Cells(f, 18).Value = datos(17) And Worksheets("BD").Cells(f, 19).Value = datos(18) Then
+            Worksheets("BD").Cells(f, 5).Value = F_modificar_Diseño.T_referencia.Value: Worksheets("BD").Cells(f, 3).Value = F_modificar_Diseño.L_paquete.Value
+            Worksheets("BD").Cells(f, 11).Value = F_modificar_Diseño.L_tema.Value: Worksheets("BD").Cells(f, 12).Value = F_modificar_Diseño.L_tipo_manga.Value
+            Worksheets("BD").Cells(f, 13).Value = F_modificar_Diseño.L_grafico.Value: Worksheets("BD").Cells(f, 15).Value = F_modificar_Diseño.L_proveedor.Value
+            Worksheets("BD").Cells(f, 14).Value = F_modificar_Diseño.T_caracteristicas.Value: Worksheets("BD").Cells(f, 18).Value = F_modificar_Diseño.T_tela.Value
+            Worksheets("BD").Cells(f, 19).Value = F_modificar_Diseño.T_color.Value: Worksheets("BD").Cells(f, 20).Value = Format(F_modificar_Diseño.T_consumo.Value, "0.00")
+            Worksheets("BD").Cells(f, 21).Value = Format(F_modificar_Diseño.T_unidades.Value, "#,##0"): Worksheets("BD").Cells(f, 22).Value = Format(F_modificar_Diseño.T_metros.Value, "#,##0")
+    End If
+    f = f + 1
+Loop
+Worksheets("Auditoria").Select
+f = 1
+Do Until Worksheets("Auditoria").Cells(f, 5) = Empty
+    f = f + 1
+Loop
+If Worksheets("Auditoria").Cells(f, 5).Value = Empty Then
+    Worksheets("Auditoria").Cells(f, 2).Value = "Modificación": Worksheets("Auditoria").Cells(f, 3).Value = datos(0): Worksheets("Auditoria").Cells(f, 4).Value = datos(1)
+    Worksheets("Auditoria").Cells(f, 5).Value = datos(2): Worksheets("Auditoria").Cells(f, 7).Value = datos(4): Worksheets("Auditoria").Cells(f, 8).Value = datos(10)
+    Worksheets("Auditoria").Cells(f, 9).Value = datos(11): Worksheets("Auditoria").Cells(f, 10).Value = datos(12): Worksheets("Auditoria").Cells(f, 11).Value = datos(13)
+    Worksheets("Auditoria").Cells(f, 12).Value = datos(14): Worksheets("Auditoria").Cells(f, 13).Value = datos(16): Worksheets("Auditoria").Cells(f, 14).Value = datos(17)
+    Worksheets("Auditoria").Cells(f, 15).Value = datos(18): Worksheets("Auditoria").Cells(f, 16).Value = datos(19): Worksheets("Auditoria").Cells(f, 17).Value = datos(20)
+    Worksheets("Auditoria").Cells(f, 18).Value = datos(21)
+End If
+f = 1
+Do Until Worksheets("Auditoria").Cells(f, 5) = Empty
+    f = f + 1
+Loop
+If Worksheets("Auditoria").Cells(f, 5).Value = Empty Then
+    Worksheets("Auditoria").Cells(f, 1).Value = F_modificar_Diseño.T_fecha.Value: Worksheets("Auditoria").Cells(f, 2).Value = "Modificación": Worksheets("Auditoria").Cells(f, 3).Value = Application.Username
+    Worksheets("Auditoria").Cells(f, 5).Value = F_modificar_Diseño.L_paquete.Value: Worksheets("Auditoria").Cells(f, 7).Value = F_modificar_Diseño.T_referencia.Value
+    Worksheets("Auditoria").Cells(f, 8).Value = F_modificar_Diseño.L_tema.Value: Worksheets("Auditoria").Cells(f, 9).Value = F_modificar_Diseño.L_tipo_manga.Value
+    Worksheets("Auditoria").Cells(f, 10).Value = F_modificar_Diseño.L_grafico.Value: Worksheets("Auditoria").Cells(f, 11).Value = F_modificar_Diseño.T_caracteristicas.Value
+    Worksheets("Auditoria").Cells(f, 12).Value = F_modificar_Diseño.L_proveedor.Value: Worksheets("Auditoria").Cells(f, 13).Value = datos(16): Worksheets("Auditoria").Cells(f, 14).Value = F_modificar_Diseño.T_tela.Value
+    Worksheets("Auditoria").Cells(f, 15).Value = F_modificar_Diseño.T_color.Value: Worksheets("Auditoria").Cells(f, 16).Value = Format(F_modificar_Diseño.T_consumo.Value, "0.00")
+    Worksheets("Auditoria").Cells(f, 17).Value = Format(F_modificar_Diseño.T_unidades.Value, "#,##0"): Worksheets("Auditoria").Cells(f, 18).Value = Format(F_modificar_Diseño.T_metros.Value, "#,##0")
+End If
+F_modificar_Diseño.Hide
+Load F_seguimiento_Diseño
+Call actualizar
+End Sub
+Private Sub B_regresar_Click()
+Unload F_modificar_Diseño
+End Sub
+
+Private Sub T_consumo_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If IsNumeric(F_modificar_Diseño.T_consumo.Value) = False Then
+    MsgBox "El consumo debe ser un valor numerico", vbExclamation
+    F_modificar_Diseño.T_consumo.SetFocus
+Else
+    F_modificar_Diseño.T_metros.Value = F_modificar_Diseño.T_consumo.Value * F_modificar_Diseño.T_unidades.Value
+End If
+End Sub
+Private Sub T_unidades_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If IsNumeric(F_modificar_Diseño.T_unidades.Value) = False Then
+    MsgBox "Las unidades debe ser un valor numerico", vbExclamation
+    F_modificar_Diseño.T_unidades.SetFocus
+Else
+    F_modificar_Diseño.T_metros.Value = F_modificar_Diseño.T_consumo.Value * F_modificar_Diseño.T_unidades.Value
+End If
+End Sub
+
+Private Sub UserForm_Initialize()
+Dim f As Integer
+With F_modificar_Diseño.T_metros
+    .Enabled = False
+End With
+F_modificar_Diseño.T_fecha = Date
+With F_modificar_Diseño.T_referencia
+    .Enabled = False
+    .TextAlign = fmTextAlignCenter
+End With
+With F_modificar_Diseño.T_fecha
+    .Enabled = False
+    .TextAlign = fmTextAlignCenter
+End With
+Worksheets("Datos_origen").Visible = True
+Sheets("Datos_origen").Select
+f = 2
+Do Until Cells(f, 15) = Empty
+   F_modificar_Diseño.L_tema.AddItem (Cells(f, 15))
+    f = f + 1
+Loop
+f = 2
+Do Until Cells(f, 12) = Empty
+   F_modificar_Diseño.L_paquete.AddItem (Cells(f, 12))
+    f = f + 1
+Loop
+f = 2
+Do Until Cells(f, 17) = Empty
+   F_modificar_Diseño.L_tipo_manga.AddItem (Cells(f, 17))
+    f = f + 1
+Loop
+f = 2
+Do Until Cells(f, 19) = Empty
+    F_modificar_Diseño.L_grafico.AddItem (Cells(f, 19))
+    f = f + 1
+Loop
+f = 2
+Do Until Cells(f, 21) = Empty
+   F_modificar_Diseño.L_proveedor.AddItem (Cells(f, 21))
+    f = f + 1
+Loop
+'Worksheets("Datos_origen").Visible = xlSheetVeryHidden
+Me.L_paquete.SetFocus
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Unload F_modificar_Diseño
+End Sub
+
+
+'F_R_Referencia_Diseño
+
+Dim B_d As Worksheet, D_o As Worksheet
+Dim Combos(1, 10) As String
+'listbox tela
+Dim listB_ant(1, 19) As Variant
+
+Private Sub C_grafico_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If F_R_Referencia_Diseño.C_grafico.Value <> "" Then
+        'Populating the listbox L_vis_reg_ref
+        With F_R_Referencia_Diseño.L_vis_reg_ref
+            .ColumnCount = 12
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+            .TextAlign = fmTextAlignCenter
+        End With
+        F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+        F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+    End If
+End Sub
+
+'************************************************************************************************************************************
+Private Sub C_Paquete_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If F_R_Referencia_Diseño.C_Paquete.Value <> "" Then
+            With Datos_origen
+                Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+            End With
+        Dim X As Integer
+                If D_o.Cells(2, 13) <> "" Then 'Paquete : Calling value from BD
+                X = 2
+                    Do Until D_o.Cells(X, 12) = ""
+                        Dim paq As Integer
+                        paq = CInt(F_R_Referencia_Diseño.C_Paquete.Value)
+                        If paq = D_o.Cells(X, 12).Value Then
+                          F_R_Referencia_Diseño.T_semana.Value = D_o.Cells(X, 13).Value
+                          Exit Do
+                        End If
+                    X = X + 1
+                    Loop
+                Else
+                    'Borrar datos anteriores
+                    MsgBox "No hay fechas asignadas al paquete,Comuniquese con el usuario administrador"
+                    'End Sub
+                End If
+        'Populating the listbox L_vis_reg_ref
+        With F_R_Referencia_Diseño.L_vis_reg_ref
+            .ColumnCount = 12
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+            .TextAlign = fmTextAlignCenter
+        End With
+        F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+        F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+ElseIf IsNumeric(F_R_Referencia_Diseño.C_Paquete.Value) = False And F_R_Referencia_Diseño.C_Paquete.Value <> "" Then
+    MsgBox "El Paquete debe ser un valor Numérico"
+End If
+End Sub
+
+Private Sub C_tema_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+If F_R_Referencia_Diseño.C_tema.Value <> "" Then
+        'Populating the listbox L_vis_reg_ref
+        With F_R_Referencia_Diseño.L_vis_reg_ref
+            .ColumnCount = 12
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+            .TextAlign = fmTextAlignCenter
+        End With
+        F_R_Referencia_Diseño.L_vis_reg_ref.clear
+               Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+        F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+    End If
+End Sub
+
+Private Sub C_tipodemanga_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+ If F_R_Referencia_Diseño.C_tipodemanga <> "" Then
+        'Populating the listbox L_vis_reg_ref
+        With F_R_Referencia_Diseño.L_vis_reg_ref
+            .ColumnCount = 12
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+            .TextAlign = fmTextAlignCenter
+        End With
+        F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+        F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+    End If
+End Sub
+
+Private Sub T_referencia_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    If IsNumeric(F_R_Referencia_Diseño.T_referencia.Value) = True And F_R_Referencia_Diseño.T_referencia.Value <> "" And Len(F_R_Referencia_Diseño.T_referencia.Value) = 7 Then
+            With Datos_origen
+                Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+            End With
+        Dim A_ref(7) As Integer, i As Integer 'Campos Bloqueados
+                For i = 0 To 6
+                    A_ref(i) = Mid(F_R_Referencia_Diseño.T_referencia.Value, i + 1, 1)
+                Next i
+                    X = 2
+                    Do Until D_o.Cells(X, 6) = ""
+                        If A_ref(0) = D_o.Cells(X, 6).Value Then
+                            'Linea Registration
+                            F_R_Referencia_Diseño.T_linea.Value = D_o.Cells(X, 7).Value
+                            Exit Do
+                        End If
+                        X = X + 1
+                    Loop
+                    X = 2
+                    Do Until D_o.Cells(X, 3) = ""
+                        If A_ref(1) = D_o.Cells(X, 3) Then
+                            'T:Prend Registration
+                            F_R_Referencia_Diseño.T_prenda.Value = D_o.Cells(X, 4).Value
+                            Exit Do
+                        End If
+                            X = X + 1
+                    Loop
+                    If A_ref(2) = 1 Or A_ref(2) = 2 Or A_ref(2) = 3 Or A_ref(2) = 9 Then
+                        X = 2
+                        Do Until D_o.Cells(X, 1) = ""
+                            If A_ref(2) = D_o.Cells(X, 1).Value Then
+                                'Coleccion
+                                F_R_Referencia_Diseño.T_coleccion.Value = D_o.Cells(X, 1).Value
+                                Exit Do
+                            End If
+                                X = X + 1
+                        Loop
+                    Else
+                    MsgBox "Verifique el código de Colección en la referencia"
+                    F_R_Referencia_Diseño.T_referencia.SetFocus
+                    Exit Sub
+                    End If
+                    X = 2
+                    Do Until D_o.Cells(X, 9) = ""
+                        If A_ref(3) = D_o.Cells(X, 9).Value Then
+                            'Año
+                            F_R_Referencia_Diseño.T_anio.Value = D_o.Cells(X, 10).Value
+                            Exit Do
+                        End If
+                            X = X + 1
+                    Loop
+        'Populating the listbox L_vis_reg_ref
+        With F_R_Referencia_Diseño.L_vis_reg_ref
+            .ColumnCount = 12
+            .ColumnHeads = False
+            .ForeColor = vbBlack
+            .ListStyle = fmListStylePlain
+            .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+            .TextAlign = fmTextAlignCenter
+        End With
+        F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+        F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+    ElseIf IsNumeric(F_R_Referencia_Diseño.T_referencia.Value) = False And F_R_Referencia_Diseño.T_referencia.Value <> "" Then
+        MsgBox "La referencia debe ser un valor númerico"
+        F_R_Referencia_Diseño.T_referencia.SetFocus
+        Exit Sub
+    ElseIf Len(F_R_Referencia_Diseño.T_referencia.Value) < 7 Then
+        MsgBox "La referencia debe Tener 7 Digitos"
+        F_R_Referencia_Diseño.T_referencia.SetFocus
+        Exit Sub
+    End If
+End Sub
+Private Sub T_descripcion_AfterUpdate()
+'Populating the listbox L_vis_reg_ref
+With F_R_Referencia_Diseño.L_vis_reg_ref
+    .ColumnCount = 12
+    .ColumnHeads = False
+    .ForeColor = vbBlack
+    .ListStyle = fmListStylePlain
+    .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75"
+    .TextAlign = fmTextAlignCenter
+End With
+F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                Combos(0, 0) = "Paquete"
+                Combos(0, 1) = "Fecha Paquete"
+                Combos(0, 2) = "Referencia"
+                Combos(0, 3) = "Linea"
+                Combos(0, 4) = "Tipo de prenda"
+                Combos(0, 5) = "Colección"
+                Combos(0, 6) = "Año"
+                Combos(0, 7) = "Descripción"
+                Combos(0, 8) = "Tema"
+                Combos(0, 9) = "Tipo de Manga"
+                Combos(0, 10) = "Gráfico"
+                Combos(1, 0) = F_R_Referencia_Diseño.C_Paquete.Value
+                Combos(1, 1) = F_R_Referencia_Diseño.T_semana.Value
+                Combos(1, 2) = F_R_Referencia_Diseño.T_referencia.Value
+                Combos(1, 3) = F_R_Referencia_Diseño.T_linea.Value
+                Combos(1, 4) = F_R_Referencia_Diseño.T_prenda.Value
+                Combos(1, 5) = F_R_Referencia_Diseño.T_coleccion.Value
+                Combos(1, 6) = F_R_Referencia_Diseño.T_anio.Value
+                Combos(1, 7) = F_R_Referencia_Diseño.T_descripcion.Value
+                Combos(1, 8) = F_R_Referencia_Diseño.C_tema.Value
+                Combos(1, 9) = F_R_Referencia_Diseño.C_tipodemanga.Value
+                Combos(1, 10) = F_R_Referencia_Diseño.C_grafico.Value
+F_R_Referencia_Diseño.L_vis_reg_ref.List = Combos()
+End Sub
+ '/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Private Sub CommandButton1_Click() 'Initialize form
+
+If F_R_Referencia_Diseño.T_referencia.Value <> "" Then
+    F_R_Tela_Principal_Diseño.T_rf_tela.Value = F_R_Referencia_Diseño.T_referencia.Value
+    'Cada columna del listbox la llevo a un vector y luego al listbox de la tela
+    'Debo tener un vector bidimensional de tamaño variable para poder registrar n cantidad de colores
+    'Populating the listbox ListB_tela
+            With F_R_Tela_Principal_Diseño.ListB_tela
+                .ColumnCount = 20
+                .ColumnHeads = False
+                .ForeColor = vbBlack
+                .ListStyle = fmListStylePlain
+                .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+                .TextAlign = fmTextAlignCenter
+            End With
+            F_R_Tela_Principal_Diseño.ListB_tela.clear
+    Dim fl As Integer
+    fl = 0
+        For fl = 0 To 10
+            Dim pasar As String
+            pasar = F_R_Referencia_Diseño.L_vis_reg_ref.List(1, fl)
+                If pasar <> "" Then
+                    listB_ant(1, fl) = F_R_Referencia_Diseño.L_vis_reg_ref.List(1, fl)
+                End If
+        Next fl
+        listB_ant(0, 0) = "Paquete"
+        listB_ant(0, 1) = "Fecha Paquete"
+        listB_ant(0, 2) = "Referencia"
+        listB_ant(0, 3) = "Linea"
+        listB_ant(0, 4) = "Tipo de prenda"
+        listB_ant(0, 5) = "Colección"
+        listB_ant(0, 6) = "Año"
+        listB_ant(0, 7) = "Descripción"
+        listB_ant(0, 8) = "Tema"
+        listB_ant(0, 9) = "Tipo de Manga"
+        listB_ant(0, 10) = "Gráfico"
+        listB_ant(0, 11) = "Caracteristica"
+        listB_ant(0, 12) = "Proveedor"
+        listB_ant(0, 13) = "Origen"
+        listB_ant(0, 14) = "Estado"
+        listB_ant(0, 15) = "Tela"
+        listB_ant(0, 16) = "Color"
+        listB_ant(0, 17) = "Consumo"
+        listB_ant(0, 18) = "Unidades"
+        listB_ant(0, 19) = "Metros"
+    F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ant()
+    F_R_Tela_Principal_Diseño.Show
+    Load F_R_Tela_Principal_Diseño
+Else
+    MsgBox "Debe Llenar al menos el campo referencia"
+End If
+End Sub
+
+Private Sub CommandButton3_Click() 'Kill form
+    F_R_Referencia_Diseño.L_vis_reg_ref.clear
+    F_R_Referencia_Diseño.C_Paquete.clear
+    F_R_Referencia_Diseño.T_semana.Value = ""
+    F_R_Referencia_Diseño.T_referencia.Value = ""
+    F_R_Referencia_Diseño.T_linea.Value = ""
+    F_R_Referencia_Diseño.T_prenda.Value = ""
+    F_R_Referencia_Diseño.T_coleccion.Value = ""
+    F_R_Referencia_Diseño.T_anio.Value = ""
+    F_R_Referencia_Diseño.T_descripcion.Value = ""
+    F_R_Referencia_Diseño.C_tema.clear
+    F_R_Referencia_Diseño.C_tipodemanga.clear
+    F_R_Referencia_Diseño.C_grafico.clear
+    F_R_Referencia_Diseño.Hide
+    Unload F_R_Referencia_Diseño
+    Perfil_diseño.Show
+    Load Perfil_diseño
+    End Sub
+
+Private Sub CommandButton4_Click() '¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+ThisWorkbook.Worksheets("BD").Activate
+    With BD
+        Set B_d = ThisWorkbook.Worksheets("BD")
+    End With
+    With Datos_origen
+        Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+    End With
+Dim Ultima_fila_BD As Range
+Dim nueva_fila As Integer
+Set Ultima_fila_BD = B_d.Cells(1, 1).CurrentRegion 'BD location for new data
+nueva_fila = Ultima_fila_BD.Rows.Count + 1
+Cells(nueva_fila, 1).Value = Application.Username
+Cells(nueva_fila, 2).Value = Date
+Cells(nueva_fila, 3).Value = F_R_Referencia_Diseño.C_Paquete.Value
+Dim X As Integer 'Control paquete
+        If D_o.Cells(2, 12) <> "" Then
+        X = 2
+            Do Until D_o.Cells(X, 13) = ""
+                Dim paq As Integer
+                paq = CInt(F_R_Referencia_Diseño.C_Paquete.Value) 'Casting paquete
+                If paq = D_o.Cells(X, 12).Value Then
+                  B_d.Cells(nueva_fila, 4).Value = D_o.Cells(X, 13).Value 'paquete registration
+                  Exit Do
+                End If
+            X = X + 1
+            Loop
+        Else
+            'Resetting Objects
+                F_R_Referencia_Diseño.L_vis_reg_ref.clear
+                F_R_Referencia_Diseño.C_Paquete.clear
+                F_R_Referencia_Diseño.T_semana.Value = ""
+                F_R_Referencia_Diseño.T_referencia.Value = ""
+                F_R_Referencia_Diseño.T_linea.Value = ""
+                F_R_Referencia_Diseño.T_prenda.Value = ""
+                F_R_Referencia_Diseño.T_coleccion.Value = ""
+                F_R_Referencia_Diseño.T_anio.Value = ""
+                F_R_Referencia_Diseño.T_descripcion.Value = ""
+                F_R_Referencia_Diseño.C_tema.clear
+                F_R_Referencia_Diseño.C_tipodemanga.clear
+                F_R_Referencia_Diseño.C_grafico.clear
+            MsgBox "No hay fechas asignadas al paquete,Comuniquese con el usuario administrador"
+        End If
+B_d.Cells(nueva_fila, 5).Value = F_R_Referencia_Diseño.T_referencia.Value 'Reference registration
+Dim A_ref(7) As Integer 'Control referencia
+Dim i As Integer
+        For i = 0 To 6
+            A_ref(i) = Mid(F_R_Referencia_Diseño.T_referencia.Value, i + 1, 1)
+        Next i
+            X = 2
+            Do Until D_o.Cells(X, 6) = ""
+                If A_ref(0) = D_o.Cells(X, 6).Value Then
+                    B_d.Cells(nueva_fila, 6).Value = D_o.Cells(X, 7).Value 'Linea Registration
+                    Exit Do
+                End If
+                X = X + 1
+            Loop
+            X = 2
+            Do Until D_o.Cells(X, 3) = ""
+                If A_ref(1) = D_o.Cells(X, 3) Then
+                    B_d.Cells(nueva_fila, 7).Value = D_o.Cells(X, 4).Value 'T:Prend Registration
+                    Exit Do
+                End If
+                    X = X + 1
+            Loop
+            X = 2
+            Do Until D_o.Cells(X, 1) = ""
+                If A_ref(2) = D_o.Cells(X, 1).Value Then
+                    B_d.Cells(nueva_fila, 8).Value = D_o.Cells(X, 1).Value 'Colection registration
+                    Exit Do
+                End If
+                    X = X + 1
+            Loop
+            X = 2
+            Do Until D_o.Cells(X, 9) = ""
+                If A_ref(3) = D_o.Cells(X, 9).Value Then
+                    B_d.Cells(nueva_fila, 9).Value = D_o.Cells(X, 10).Value 'Year registration
+                    Exit Do
+                End If
+                    X = X + 1
+            Loop
+Cells(nueva_fila, 10) = F_R_Referencia_Diseño.T_descripcion.Value  'descripcion registration
+Cells(nueva_fila, 11) = F_R_Referencia_Diseño.C_tema.Value  'tema registration
+Cells(nueva_fila, 12) = F_R_Referencia_Diseño.C_tipodemanga.Value  'tipo de manga registration
+Cells(nueva_fila, 13) = F_R_Referencia_Diseño.C_grafico.Value  'grafico registration
+'Resetting Objects
+F_R_Referencia_Diseño.L_vis_reg_ref.clear
+F_R_Referencia_Diseño.C_Paquete.clear
+F_R_Referencia_Diseño.T_semana.Value = ""
+F_R_Referencia_Diseño.T_referencia.Value = ""
+F_R_Referencia_Diseño.T_linea.Value = ""
+F_R_Referencia_Diseño.T_prenda.Value = ""
+F_R_Referencia_Diseño.T_coleccion.Value = ""
+F_R_Referencia_Diseño.T_anio.Value = ""
+F_R_Referencia_Diseño.T_descripcion.Value = ""
+F_R_Referencia_Diseño.C_tema.clear
+F_R_Referencia_Diseño.C_tipodemanga.clear
+F_R_Referencia_Diseño.C_grafico.clear
+End Sub  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Private Sub UserForm_Activate()
+With Datos_origen
+            Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+        End With
+    Dim X As Integer
+    X = 2
+    Do Until D_o.Cells(X, 12) = ""  'Populating C_paquete
+        F_R_Referencia_Diseño.C_Paquete.AddItem D_o.Cells(X, 12)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 17) = ""  'Populating C_tipo de manga
+        F_R_Referencia_Diseño.C_tipodemanga.AddItem D_o.Cells(X, 17)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 15) = ""  'Populating C_tema
+        F_R_Referencia_Diseño.C_tema.AddItem D_o.Cells(X, 15)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 19) = ""  'Populating C_grafico
+        F_R_Referencia_Diseño.C_grafico.AddItem D_o.Cells(X, 19)
+        X = X + 1
+    Loop
+    F_R_Referencia_Diseño.C_Paquete.SetFocus
+End Sub
+
+Private Sub UserForm_Initialize() '/////////////////////////////////////////////////////////////////////////////////////////////////////////
+        With Datos_origen
+            Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+        End With
+    Dim X As Integer
+    X = 2
+    Do Until D_o.Cells(X, 12) = ""  'Populating C_paquete
+        F_R_Referencia_Diseño.C_Paquete.AddItem D_o.Cells(X, 12)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 17) = ""  'Populating C_tipo de manga
+        F_R_Referencia_Diseño.C_tipodemanga.AddItem D_o.Cells(X, 17)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 15) = ""  'Populating C_tema
+        F_R_Referencia_Diseño.C_tema.AddItem D_o.Cells(X, 15)
+        X = X + 1
+    Loop
+    X = 2
+    Do Until D_o.Cells(X, 19) = ""  'Populating C_grafico
+        F_R_Referencia_Diseño.C_grafico.AddItem D_o.Cells(X, 19)
+        X = X + 1
+    Loop
+    F_R_Referencia_Diseño.C_Paquete.SetFocus
+End Sub '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Application.ScreenUpdating = False
+    F_R_Referencia_Diseño.L_vis_reg_ref.clear
+    F_R_Referencia_Diseño.C_Paquete.clear
+    F_R_Referencia_Diseño.T_semana.Value = ""
+    F_R_Referencia_Diseño.T_referencia.Value = ""
+    F_R_Referencia_Diseño.T_linea.Value = ""
+    F_R_Referencia_Diseño.T_prenda.Value = ""
+    F_R_Referencia_Diseño.T_coleccion.Value = ""
+    F_R_Referencia_Diseño.T_anio.Value = ""
+    F_R_Referencia_Diseño.T_descripcion.Value = ""
+    F_R_Referencia_Diseño.C_tema.clear
+    F_R_Referencia_Diseño.C_tipodemanga.clear
+    F_R_Referencia_Diseño.C_grafico.clear
+    Application.ThisWorkbook.Save
+    F_R_Referencia_Diseño.Hide
+    Unload F_R_Referencia_Diseño
+    Perfil_diseño.Show
+    Load Perfil_diseño
+End Sub
+
+'F_R_Tela_Principal_Diseño
+Dim listB_ubdate(1, 19) As Variant
+
+Private Sub C_proveedor_tela_Change()
+If F_R_Tela_Principal_Diseño.C_proveedor_tela.Value <> "" Then
+    With Datos_origen
+            Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+        End With
+    Dim X As Integer
+    X = 2
+    Do Until D_o.Cells(X, 21) = ""  'Populating C_proveedores
+        If D_o.Cells(X, 21).Value = F_R_Tela_Principal_Diseño.C_proveedor_tela.Value Then
+            F_R_Tela_Principal_Diseño.T_origen_tela.Value = D_o.Cells(X, 24).Value
+            Exit Do
+        End If
+        X = X + 1
+    Loop
+'Populating the listbox ListB_tela
+With F_R_Tela_Principal_Diseño.ListB_tela
+    .ColumnCount = 20
+    .ColumnHeads = False
+    .ForeColor = vbBlack
+    .ListStyle = fmListStylePlain
+    .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+    .TextAlign = fmTextAlignCenter
+End With
+Dim fln As Integer
+fln = 0
+    For fln = 0 To 19
+        Dim pasas As String
+        pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+            If pasas <> "" Then
+                listB_ubdate(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+            End If
+    Next fln
+        listB_ubdate(0, 0) = "Paquete"
+        listB_ubdate(0, 1) = "Fecha Paquete"
+        listB_ubdate(0, 2) = "Referencia"
+        listB_ubdate(0, 3) = "Linea"
+        listB_ubdate(0, 4) = "Tipo de prenda"
+        listB_ubdate(0, 5) = "Colección"
+        listB_ubdate(0, 6) = "Año"
+        listB_ubdate(0, 7) = "Descripción"
+        listB_ubdate(0, 8) = "Tema"
+        listB_ubdate(0, 9) = "Tipo de Manga"
+        listB_ubdate(0, 10) = "Gráfico"
+        listB_ubdate(0, 11) = "Caracteristica"
+        listB_ubdate(0, 12) = "Proveedor"
+        listB_ubdate(0, 13) = "Origen"
+        listB_ubdate(0, 14) = "Estado"
+        listB_ubdate(0, 15) = "Tela"
+        listB_ubdate(0, 16) = "Color"
+        listB_ubdate(0, 17) = "Consumo"
+        listB_ubdate(0, 18) = "Unidades"
+        listB_ubdate(0, 19) = "Metros"
+    listB_ubdate(1, 12) = F_R_Tela_Principal_Diseño.C_proveedor_tela.Value
+    listB_ubdate(1, 13) = F_R_Tela_Principal_Diseño.T_origen_tela.Value
+    F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ubdate()
+End If
+End Sub
+
+Private Sub CommandButton1_Click()
+  Call Registra_total
+  F_R_Tela_Principal_Diseño.T_cara_tela.Value = ""
+  F_R_Tela_Principal_Diseño.T_origen_tela.Value = ""
+  F_R_Tela_Principal_Diseño.T_rf_tela.Value = ""
+  F_R_Tela_Principal_Diseño.Tex_tela.Value = ""
+  F_R_Tela_Principal_Diseño.C_proveedor_tela.clear
+  F_R_Tela_Principal_Diseño.ListB_tela.clear
+  F_R_Tela_Principal_Diseño.Opt_activa.Value = False
+  F_R_Tela_Principal_Diseño.Opt_aprovada = False
+  F_R_Tela_Principal_Diseño.Hide
+  F_R_Referencia_Diseño.L_vis_reg_ref.clear
+  F_R_Referencia_Diseño.C_Paquete.clear
+  F_R_Referencia_Diseño.T_semana.Value = ""
+  F_R_Referencia_Diseño.T_referencia.Value = ""
+  F_R_Referencia_Diseño.T_linea.Value = ""
+  F_R_Referencia_Diseño.T_prenda.Value = ""
+  F_R_Referencia_Diseño.T_coleccion.Value = ""
+  F_R_Referencia_Diseño.T_anio.Value = ""
+  F_R_Referencia_Diseño.T_descripcion.Value = ""
+  F_R_Referencia_Diseño.C_tema.clear
+  F_R_Referencia_Diseño.C_tipodemanga.clear
+  F_R_Referencia_Diseño.C_grafico.clear
+  F_R_Referencia_Diseño.T_referencia.SetFocus
+End Sub
+
+Private Sub CommandButton2_Click()
+  Load F_Color
+  F_Color.Show
+  F_Color.T_ncolor.SetFocus
+End Sub
+
+Private Sub CommandButton3_Click()
+  F_R_Tela_Principal_Diseño.T_cara_tela.Value = ""
+  F_R_Tela_Principal_Diseño.T_origen_tela.Value = ""
+  F_R_Tela_Principal_Diseño.T_rf_tela.Value = ""
+  F_R_Tela_Principal_Diseño.Tex_tela.Value = ""
+  F_R_Tela_Principal_Diseño.C_proveedor_tela.clear
+  F_R_Tela_Principal_Diseño.ListB_tela.clear
+  F_R_Tela_Principal_Diseño.Opt_activa.Value = False
+  F_R_Tela_Principal_Diseño.Opt_aprovada = False
+  F_R_Tela_Principal_Diseño.Hide
+  Unload F_R_Tela_Principal_Diseño
+End Sub
+
+Private Sub Opt_activa_Click()
+If Opt_activa.Value = True Then
+    'Populating the listbox ListB_tela
+    With F_R_Tela_Principal_Diseño.ListB_tela
+        .ColumnCount = 20
+        .ColumnHeads = False
+        .ForeColor = vbBlack
+        .ListStyle = fmListStylePlain
+        .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+        .TextAlign = fmTextAlignCenter
+    End With
+    Dim fln As Integer
+    fln = 0
+        For fln = 0 To 19
+            Dim pasas As String
+            pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                If pasas <> "" Then
+                    listB_ubdate(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                End If
+        Next fln
+        listB_ubdate(0, 0) = "Paquete"
+        listB_ubdate(0, 1) = "Fecha Paquete"
+        listB_ubdate(0, 2) = "Referencia"
+        listB_ubdate(0, 3) = "Linea"
+        listB_ubdate(0, 4) = "Tipo de prenda"
+        listB_ubdate(0, 5) = "Colección"
+        listB_ubdate(0, 6) = "Año"
+        listB_ubdate(0, 7) = "Descripción"
+        listB_ubdate(0, 8) = "Tema"
+        listB_ubdate(0, 9) = "Tipo de Manga"
+        listB_ubdate(0, 10) = "Gráfico"
+        listB_ubdate(0, 11) = "Caracteristica"
+        listB_ubdate(0, 12) = "Proveedor"
+        listB_ubdate(0, 13) = "Origen"
+        listB_ubdate(0, 14) = "Estado"
+        listB_ubdate(0, 15) = "Tela"
+        listB_ubdate(0, 16) = "Color"
+        listB_ubdate(0, 17) = "Consumo"
+        listB_ubdate(0, 18) = "Unidades"
+        listB_ubdate(0, 19) = "Metros"
+        listB_ubdate(1, 14) = "Activa"
+        F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ubdate()
+End If
+End Sub
+
+Private Sub Opt_aprovada_Click()
+If Opt_aprovada.Value = True Then
+    'Populating the listbox ListB_tela
+    With F_R_Tela_Principal_Diseño.ListB_tela
+        .ColumnCount = 20
+        .ColumnHeads = False
+        .ForeColor = vbBlack
+        .ListStyle = fmListStylePlain
+        .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+        .TextAlign = fmTextAlignCenter
+    End With
+    Dim fln As Integer
+    fln = 0
+        For fln = 0 To 19
+            Dim pasas As String
+            pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                If pasas <> "" Then
+                    listB_ubdate(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                End If
+        Next fln
+        listB_ubdate(0, 0) = "Paquete"
+        listB_ubdate(0, 1) = "Fecha Paquete"
+        listB_ubdate(0, 2) = "Referencia"
+        listB_ubdate(0, 3) = "Linea"
+        listB_ubdate(0, 4) = "Tipo de prenda"
+        listB_ubdate(0, 5) = "Colección"
+        listB_ubdate(0, 6) = "Año"
+        listB_ubdate(0, 7) = "Descripción"
+        listB_ubdate(0, 8) = "Tema"
+        listB_ubdate(0, 9) = "Tipo de Manga"
+        listB_ubdate(0, 10) = "Gráfico"
+        listB_ubdate(0, 11) = "Caracteristica"
+        listB_ubdate(0, 12) = "Proveedor"
+        listB_ubdate(0, 13) = "Origen"
+        listB_ubdate(0, 14) = "Estado"
+        listB_ubdate(0, 15) = "Tela"
+        listB_ubdate(0, 16) = "Color"
+        listB_ubdate(0, 17) = "Consumo"
+        listB_ubdate(0, 18) = "Unidades"
+        listB_ubdate(0, 19) = "Metros"
+        listB_ubdate(1, 14) = "Aprobada"
+        F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ubdate()
+End If
+End Sub
+
+Private Sub T_cara_tela_AfterUpdate()
+If F_R_Tela_Principal_Diseño.T_cara_tela.Value <> "" Then
+    'Populating the listbox ListB_tela
+    With F_R_Tela_Principal_Diseño.ListB_tela
+        .ColumnCount = 20
+        .ColumnHeads = False
+        .ForeColor = vbBlack
+        .ListStyle = fmListStylePlain
+        .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+        .TextAlign = fmTextAlignCenter
+    End With
+    Dim fln As Integer
+    fln = 0
+        For fln = 0 To 19
+            Dim pasas As String
+            pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                If pasas <> "" Then
+                    listB_ubdate(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                End If
+        Next fln
+        listB_ubdate(0, 0) = "Paquete"
+        listB_ubdate(0, 1) = "Fecha Paquete"
+        listB_ubdate(0, 2) = "Referencia"
+        listB_ubdate(0, 3) = "Linea"
+        listB_ubdate(0, 4) = "Tipo de prenda"
+        listB_ubdate(0, 5) = "Colección"
+        listB_ubdate(0, 6) = "Año"
+        listB_ubdate(0, 7) = "Descripción"
+        listB_ubdate(0, 8) = "Tema"
+        listB_ubdate(0, 9) = "Tipo de Manga"
+        listB_ubdate(0, 10) = "Gráfico"
+        listB_ubdate(0, 11) = "Caracteristica"
+        listB_ubdate(0, 12) = "Proveedor"
+        listB_ubdate(0, 13) = "Origen"
+        listB_ubdate(0, 14) = "Estado"
+        listB_ubdate(0, 15) = "Tela"
+        listB_ubdate(0, 16) = "Color"
+        listB_ubdate(0, 17) = "Consumo"
+        listB_ubdate(0, 18) = "Unidades"
+        listB_ubdate(0, 19) = "Metros"
+        listB_ubdate(1, 11) = F_R_Tela_Principal_Diseño.T_cara_tela.Value
+        F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ubdate()
+End If
+End Sub
+
+Private Sub Tex_tela_AfterUpdate()
+If F_R_Tela_Principal_Diseño.Tex_tela.Value <> "" Then
+    'Populating the listbox ListB_tela
+    With F_R_Tela_Principal_Diseño.ListB_tela
+        .ColumnCount = 20
+        .ColumnHeads = False
+        .ForeColor = vbBlack
+        .ListStyle = fmListStylePlain
+        .ColumnWidths = "50;85;60;50;85;60;50;185;75;85;75;185;235;85;75;185;185;75;75;85"
+        .TextAlign = fmTextAlignCenter
+    End With
+    Dim fln As Integer
+    fln = 0
+        For fln = 0 To 19
+            Dim pasas As String
+            pasas = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                If pasas <> "" Then
+                    listB_ubdate(1, fln) = F_R_Tela_Principal_Diseño.ListB_tela.List(1, fln)
+                End If
+        Next fln
+        listB_ubdate(0, 0) = "Paquete"
+        listB_ubdate(0, 1) = "Fecha Paquete"
+        listB_ubdate(0, 2) = "Referencia"
+        listB_ubdate(0, 3) = "Linea"
+        listB_ubdate(0, 4) = "Tipo de prenda"
+        listB_ubdate(0, 5) = "Colección"
+        listB_ubdate(0, 6) = "Año"
+        listB_ubdate(0, 7) = "Descripción"
+        listB_ubdate(0, 8) = "Tema"
+        listB_ubdate(0, 9) = "Tipo de Manga"
+        listB_ubdate(0, 10) = "Gráfico"
+        listB_ubdate(0, 11) = "Caracteristica"
+        listB_ubdate(0, 12) = "Proveedor"
+        listB_ubdate(0, 13) = "Origen"
+        listB_ubdate(0, 14) = "Estado"
+        listB_ubdate(0, 15) = "Tela"
+        listB_ubdate(0, 16) = "Color"
+        listB_ubdate(0, 17) = "Consumo"
+        listB_ubdate(0, 18) = "Unidades"
+        listB_ubdate(0, 19) = "Metros"
+        listB_ubdate(1, 15) = F_R_Tela_Principal_Diseño.Tex_tela.Value
+        F_R_Tela_Principal_Diseño.ListB_tela.List = listB_ubdate
+End If
+End Sub
+
+Private Sub UserForm_Activate()
+Call reinicia_filas
+With Datos_origen
+            Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+        End With
+    Dim X As Integer
+    X = 2
+    Do Until D_o.Cells(X, 21) = ""  'Populating C_proveedores
+        F_R_Tela_Principal_Diseño.C_proveedor_tela.AddItem D_o.Cells(X, 21)
+        X = X + 1
+    Loop
+End Sub
+
+Private Sub UserForm_Initialize()
+    With Datos_origen
+            Set D_o = ThisWorkbook.Worksheets("Datos_origen")
+        End With
+    Dim X As Integer
+    X = 2
+    Do Until D_o.Cells(X, 21) = ""  'Populating C_proveedores
+        F_R_Tela_Principal_Diseño.C_proveedor_tela.AddItem D_o.Cells(X, 21)
+        X = X + 1
+    Loop
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Unload F_R_Tela_Principal_Diseño
+End Sub
+
+
+'F_Seguimiento_Diseño
+
+Dim F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12 As String
+Private Sub B_buscar_Click()
+Call actualizar
+End Sub
+Private Sub B_eliminar_Click()
+Dim cuenta, datos(22) As String, fila As Integer
+cuenta = F_seguimiento_Diseño.L_seguimiento.ListCount
+If F_seguimiento_Diseño.L_seguimiento.Selected(0) = True Then
+    MsgBox "Por favor seleccione una fila distinta al encabezado!", vbCritical
+Else
+    For fila = cuenta To 0 Step -1
+        If F_seguimiento_Diseño.L_seguimiento.Selected(fila) Then
+            For e = 0 To 22
+            datos(e) = F_seguimiento_Diseño.L_seguimiento.List(fila, e)
+            Next e
+                'Asienta el registro de la operación en la hoja "Auditoria"
+                Worksheets("Auditoria").Visible = xlSheetVisible
+                Sheets("Auditoria").Select
+                f = 1
+                Do Until Cells(f, 5) = Empty
+                    If Cells(f, 5) <> Empty Then
+                        f = f + 1
+                    End If
+                Loop
+                    Worksheets("Auditoria").Cells(f, 2).Value = "Eliminar": Worksheets("Auditoria").Cells(f, 3).Value = datos(0): Worksheets("Auditoria").Cells(f, 4).Value = datos(1)
+                    Worksheets("Auditoria").Cells(f, 5).Value = datos(2): Worksheets("Auditoria").Cells(f, 7).Value = datos(4): Worksheets("Auditoria").Cells(f, 8).Value = datos(10)
+                    Worksheets("Auditoria").Cells(f, 9).Value = datos(11): Worksheets("Auditoria").Cells(f, 10).Value = datos(12): Worksheets("Auditoria").Cells(f, 11).Value = datos(13)
+                    Worksheets("Auditoria").Cells(f, 12).Value = datos(14): Worksheets("Auditoria").Cells(f, 13).Value = datos(16): Worksheets("Auditoria").Cells(f, 14).Value = datos(17)
+                    Worksheets("Auditoria").Cells(f, 15).Value = datos(18): Worksheets("Auditoria").Cells(f, 16).Value = datos(19): Worksheets("Auditoria").Cells(f, 17).Value = datos(20)
+                    Worksheets("Auditoria").Cells(f, 18).Value = datos(21): Worksheets("Auditoria").Cells(f, 1).Value = Date: Worksheets("Auditoria").Cells(f, 19).Value = Application.Username
+        End If
+    Next fila
+    Worksheets("BD").Visible = xlSheetVisible
+    Sheets("BD").Select
+    f = 2
+    Do Until Worksheets("BD").Cells(f, 5) = Empty
+        If Worksheets("BD").Cells(f, 5).Value = datos(4) And Worksheets("BD").Cells(f, 18).Value = datos(17) And Worksheets("BD").Cells(f, 19).Value = datos(18) Then
+            Cells(f, 1).Select
+            ActiveCell.EntireRow.Select
+            Selection.Delete
+            Range("A1").Select
+        End If
+        f = f + 1
+    Loop
+    Call B_buscar_Click
+End If
+End Sub
+
+Private Sub B_modificar_Click()
+Dim cuenta, datos(22) As String, fila As Integer
+Load F_seguimiento_Diseño
+cuenta = F_seguimiento_Diseño.L_seguimiento.ListCount
+If F_seguimiento_Diseño.L_seguimiento.Selected(0) = True Then
+    MsgBox "Por favor seleccione una fila distinta al encabezado!", vbCritical
+Else
+    For fila = cuenta To 0 Step -1
+        If F_seguimiento_Diseño.L_seguimiento.Selected(fila) Then
+            For e = 0 To 22
+            datos(e) = F_seguimiento_Diseño.L_seguimiento.List(fila, e)
+            Next e
+            Load F_modificar_Diseño
+                'Se rellena los campos del formulario "F_Modificar_Diseño"
+                F_modificar_Diseño.T_referencia.Value = datos(4): F_modificar_Diseño.L_paquete = datos(2): F_modificar_Diseño.L_tema.Value = datos(10)
+                F_modificar_Diseño.L_tipo_manga = datos(11): F_modificar_Diseño.L_grafico = datos(12): F_modificar_Diseño.L_proveedor = datos(14)
+                F_modificar_Diseño.T_caracteristicas.Value = datos(13): F_modificar_Diseño.T_tela.Value = datos(17): F_modificar_Diseño.T_color.Value = datos(18)
+                F_modificar_Diseño.T_consumo.Value = datos(19): F_modificar_Diseño.T_unidades.Value = datos(20): F_modificar_Diseño.T_metros.Value = datos(21)
+        End If
+    Next fila
+    F_modificar_Diseño.Show
+End If
+End Sub
+
+Private Sub B_regresar_Click()
+Application.ScreenUpdating = False
+Application.ThisWorkbook.Save
+F_seguimiento_Diseño.L_seguimiento.clear
+F_seguimiento_Diseño.L_clave.clear
+F_seguimiento_Diseño.L_tipo.clear
+F_seguimiento_Diseño.Hide
+Unload F_seguimiento_Diseño
+Perfil_diseño.Show
+Load Perfil_diseño
+End Sub
+
+Private Sub L_clave_Click()
+F_seguimiento_Diseño.L_seguimiento.clear
+F_seguimiento_Diseño.O_aprobado.Value = False
+F_seguimiento_Diseño.O_en_proceso.Value = False
+End Sub
+
+Private Sub L_tipo_afterupdate()
+'Filter and load the information of "L_clave" according to the selected criteria.
+Dim columna, f As Integer
+F_seguimiento_Diseño.L_clave.clear
+Worksheets("Datos_Origen").Visible = xlSheetVisible
+Sheets("Datos_Origen").Select
+Range("AF2").Select
+ActiveCell.EntireColumn.Select
+Selection.clear
+Worksheets("BD").Visible = xlSheetVisible
+Sheets("BD").Select
+f = 1
+Do Until Sheets("BD").Cells(1, f) = Empty
+    If F_seguimiento_Diseño.L_tipo.Value = Cells(1, f).Value Then
+        columna = f
+        Exit Do
+    End If
+    f = f + 1
+Loop
+Dim B_d As Worksheet
+Dim Ultima_fila_BD As Range
+Dim ultima_fila As Integer
+With BD
+    Set B_d = Worksheets("BD")
+End With
+Sheets("BD").Visible = True
+Sheets("Datos_origen").Visible = True
+Sheets("BD").Select
+Set Ultima_fila_BD = B_d.Cells(1, 1).CurrentRegion 'BD location for new data
+ultima_fila = Ultima_fila_BD.Rows.Count
+Cells(2, columna).Select
+Range(Cells(2, columna), Cells(ultima_fila, columna)).Select
+Application.CutCopyMode = False
+Selection.Copy
+Sheets("Datos_origen").Select
+Range("AF2").Select
+ActiveSheet.Paste
+Application.CutCopyMode = False
+ActiveWorkbook.Worksheets("Datos_origen").Sort.SortFields.clear
+ActiveWorkbook.Worksheets("Datos_origen").Sort.SortFields.Add Key:=Range("AF2"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
+With ActiveWorkbook.Worksheets("Datos_origen").Sort
+    .SetRange Range("AF2:AF10000")
+    .Header = xlNo
+    .MatchCase = False
+    .Orientation = xlTopToBottom
+    .SortMethod = xlPinYin
+    .Apply
+End With
+ActiveSheet.Range("$AF$1:$AF$10000").RemoveDuplicates Columns:=1, Header:= _
+    xlYes
+Worksheets("Datos_origen").Visible = True
+Sheets("Datos_origen").Select
+f = 2
+Do Until Cells(f, 32) = Empty 'Never mind
+   F_seguimiento_Diseño.L_clave.AddItem (Cells(f, 32))
+    f = f + 1
+Loop
+Worksheets("Datos_origen").Visible = xlSheetVeryHidden
+'Sheets("BD").Range("a1").Select
+End Sub
+Private Sub L_tipo_Click()
+F_seguimiento_Diseño.L_clave.clear
+F_seguimiento_Diseño.L_seguimiento.clear
+F_seguimiento_Diseño.O_aprobado.Value = False
+F_seguimiento_Diseño.O_en_proceso.Value = False
+End Sub
+
+Private Sub UserForm_Initialize()
+
+Worksheets("Datos_origen").Visible = True
+Sheets("Datos_origen").Select
+f = 2
+Do Until Cells(f, 30) = Empty
+   Me.L_tipo.AddItem (Cells(f, 30))
+    f = f + 1
+Loop
+'Worksheets("Datos_origen").Visible = xlSheetVeryHidden
+Sheets("BD").Select
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Application.ScreenUpdating = False
+Application.ThisWorkbook.Save
+F_seguimiento_Diseño.L_seguimiento.clear
+F_seguimiento_Diseño.L_clave.clear
+F_seguimiento_Diseño.L_tipo.clear
+F_seguimiento_Diseño.Hide
+Unload F_seguimiento_Diseño
+Perfil_diseño.Show
+Load Perfil_diseño
+End Sub
+
+
+'Log_in
+
+Public Username, Password, u, p As String
+    Public i, j, c As Integer
+    Dim L_i As Worksheet
+Private Declare PtrSafe Function GetKeyboardState Lib "user32" (pbKeyState As Byte) As Long
+Const VK_CAPITAL = &H14
+Private Sub Password_AfterGotFocus()
+Dim CapsLockState As Boolean
+    Dim error_message As String
+    Dim keys(0 To 255) As Byte
+    GetKeyboardState keys(0)
+   CapsLockState = keys(VK_CAPITAL)
+    If CapsLockState = True Then
+       error_message = "Bloq Mayús Está Activado" + Chr(13) + Chr(13)
+       MsgBox error_message, vbOKOnly + vbInformation
+    End If
+End Sub
+
+Private Sub C_Perfil_Change()
+u = Log_in.C_Perfil.Value
+    Select Case u
+    Case "Administrador"
+        Log_in.T_pass.Visible = True
+        Log_in.T_pass.PasswordChar = ""
+        Log_in.T_pass.Value = "Contraseña"
+        Log_in.T_pass.ForeColor = vbBlue
+    Case "Auxiliar de Diseño"
+        Log_in.T_pass.Visible = False
+    Case "Compras"
+        Log_in.T_pass.Visible = False
+    Case "Diseño"
+        Log_in.T_pass.Visible = False
+    Case "Programador"
+        Log_in.T_pass.Visible = True
+        Log_in.T_pass.PasswordChar = ""
+        Log_in.T_pass.Value = "Contraseña"
+        Log_in.T_pass.ForeColor = vbBlue
+    End Select
+End Sub
+
+Private Sub CommandButton1_Click()
+u = Log_in.C_Perfil.Value
+    Select Case u
+    Case "Administrador"
+    Password = Log_in.T_pass.Value
+        If Password = "1234adm" Then
+            Log_in.Hide
+            Application.Visible = True
+            Application.WindowState = xlMaximized
+            Application.Workbooks("Proyecto_Chevignon.").Activate
+            Application.Worksheets("Informes_Gráficos").Activate
+            Application.Sheets("Informes_Gráficos").Select
+        Else
+            MsgBox "Contraseña Incorrecta", vbCritical
+            Log_in.T_pass.ForeColor = vbRed
+            Log_in.T_pass.SetFocus
+        End If
+    Case "Auxiliar de Diseño"
+        MsgBox "Aùn no està Disponible esta secciòn", vbInformation
+    Case "Compras"
+        MsgBox "Aùn no està Disponible esta secciòn", vbInformation
+    Case "Diseño"
+        Log_in.Hide
+        Perfil_diseño.Show
+    Case "Programador"
+    Password = Log_in.T_pass.Value
+        If Password = "Micoloco32" Then
+            Log_in.Hide
+            Application.Visible = True
+            Application.WindowState = xlMaximized
+        Else
+            MsgBox "Contraseña Incorrecta", vbCritical
+            Log_in.T_pass.ForeColor = vbRed
+            Log_in.T_pass.SetFocus
+        End If
+    End Select
+End Sub
+
+Private Sub T_pass_Enter()
+Log_in.T_pass.Value = ""
+Log_in.T_pass.PasswordChar = "*"
+Log_in.T_pass.ForeColor = vbBlack
+Call Password_AfterGotFocus
+End Sub
+
+Private Sub UserForm_Initialize()
+Log_in.T_pass.Visible = False
+Log_in.T_User.Value = Application.Username
+Log_in.T_User.Locked = True
+Log_in.T_User.Enabled = False
+Log_in.C_Perfil.AddItem "Administrador"
+Log_in.C_Perfil.AddItem "Auxiliar de Diseño"
+Log_in.C_Perfil.AddItem "Compras"
+Log_in.C_Perfil.AddItem "Diseño"
+Log_in.C_Perfil.AddItem "Programador"
+Log_in.C_Perfil.SetFocus
+End Sub
+
+Private Sub UserForm_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+Application.OnKey "{CAPSLOCK}", Showlabel
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Application.ThisWorkbook.Save
+Application.Quit
+End Sub
+
+Private Sub UserForm_Terminate()
+Log_in.T_pass.Visible = False
+End Sub
+
+
+'Perfil_diseño
+
+Private Sub CommandButton1_Click()
+Perfil_diseño.Hide
+Load F_R_Referencia_Diseño
+F_R_Referencia_Diseño.Show
+End Sub
+
+Private Sub CommandButton2_Click()
+Perfil_diseño.Hide
+Load F_seguimiento_Diseño
+F_seguimiento_Diseño.Show
+End Sub
+
+Private Sub CommandButton3_Click()
+Application.ScreenUpdating = False
+Application.ThisWorkbook.Save
+Application.Quit
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Application.ThisWorkbook.Save
+Application.Quit
+End Sub
+
+
+'Welcome
+
+Private Sub Click_w_Click()
+    Welcome.Hide
+    Log_in.Show
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+Application.ThisWorkbook.Save
+MsgBox "Hasta Pronto", vbExclamation
+Application.Quit
+End Sub
